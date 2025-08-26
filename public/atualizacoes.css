@@ -1,0 +1,350 @@
+/* Reset e Configurações Globais */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    font-family: 'Roboto', Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f9f9fb;
+}
+
+/* Wrapper para forçar altura total da página */
+.page-wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+    height: 80px;
+    background-color: white;
+    border-bottom: 2px solid #cce4ff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.logo img {
+    height: 70px;
+}
+
+.logo .destaque {
+    color: #0077cc;
+}
+
+.menu {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #0077cc;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.menu a:hover {
+    color: #005999;
+    text-decoration: underline;
+}
+
+.botoes {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.fale-conosco {
+    background-color: #0077cc;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s ease;
+    font-size: 1rem;
+}
+
+.fale-conosco:hover {
+    background-color: #005999;
+}
+
+/* Conteúdo Principal */
+main {
+    flex: 1; /* Faz o main ocupar o espaço restante entre navbar e footer */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Seção de Postagem */
+.post-box {
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin: 30px auto 20px;
+    display: flex;
+    flex-direction: column;
+    max-width: 800px;
+    width: 90%;
+}
+
+.post-box h2 {
+    margin-bottom: 10px;
+    color: #0056b3;
+}
+
+textarea {
+    width: 100%;
+    height: 70px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    resize: none;
+    font-size: 14px;
+}
+
+button {
+    margin-top: 10px;
+    background: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+    align-self: flex-end;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+/* Feed de Postagens com altura fixa e scroll */
+.feed {
+    background: #fff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border-radius: 12px;
+    max-width: 800px;
+    width: 90%;
+    height: 400px;  /* altura fixa do container */
+    overflow-y: auto; /* habilita o scroll vertical */
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Posts dentro do feed */
+.post {
+    background: #ffffff;
+    padding: 20px 25px;
+    border-left: 5px solid #0077cc;
+    border-radius: 10px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+    margin-bottom: 0; /* já tem gap na feed */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    animation: fadeIn 0.4s ease;
+    position: relative;
+}
+
+.post:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+.post p {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 12px;
+}
+
+.post time {
+    font-size: 13px;
+    color: #777;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.post time::before {
+    content: "🕒 ";
+    margin-right: 4px;
+}
+
+.usuario-post {
+    font-size: 13px;
+    font-weight: bold;
+    color: #555;
+}
+
+/* Botão apagar */
+button.apagar {
+    background: transparent;
+    border: none;
+    color: #999;
+    font-size: 0.85em;
+    cursor: pointer;
+    padding: 0 6px;
+    transition: color 0.3s;
+    margin-top: 10px;
+}
+
+button.apagar:hover {
+    color: #e00;
+}
+
+/* Animações */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Footer */
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #0056b3;
+    color: #f1f1f1;
+    padding: 20px 40px;
+    font-size: 0.95em;
+    flex-wrap: wrap;
+}
+
+/* Responsividade Footer */
+.footer-left, .footer-right {
+    margin: 5px 0;
+}
+
+.footer-right a {
+    color: #4da6ff;
+    text-decoration: none;
+}
+
+.footer-right a:hover {
+    text-decoration: underline;
+}
+
+/* Formulário de Login */
+.login-form {
+    display: flex;
+    gap: 10px;
+    margin: 20px;
+}
+
+.login-form input {
+    padding: 8px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+/* Ajuste do formulário de login para mobile */
+@media (max-width: 768px) {
+    .container {
+        width: 90%;
+    }
+
+    .navbar {
+        flex-direction: column;
+        height: auto;
+        padding-bottom: 10px;
+    }
+
+    .menu {
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+    }
+
+    .botoes {
+        margin-top: 10px;
+    }
+
+    footer {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .post-box, .feed {
+        width: 95%;
+        padding: 0 10px;
+    }
+
+    /* Formulário login em coluna no mobile */
+    .login-form {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+        margin: 20px auto;
+        max-width: 400px;
+        padding: 0 10px;
+    }
+
+    .login-form input,
+    .login-form button {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .login-form button {
+        cursor: pointer;
+        padding: 12px;
+        font-size: 1rem;
+        border-radius: 8px;
+        background-color: #0077cc;
+        color: white;
+        border: none;
+        transition: background-color 0.3s ease;
+    }
+
+    .login-form button:hover {
+        background-color: #005999;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .logo img {
+        height: 50px;
+    }
+
+    .menu {
+        align-items: center;
+        text-align: center;
+    }
+
+    .fale-conosco {
+        font-size: 0.9rem;
+        padding: 10px;
+    }
+
+    .botao {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+    }
+}

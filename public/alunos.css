@@ -1,0 +1,67 @@
+.alunos-info {
+    text-align: center;
+    background: #fff;
+    padding: 40px 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    margin-top: 40px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Título da seção */
+.alunos-info h2 {
+    color: #0056b3;
+    margin-bottom: 20px;
+    font-size: 2rem;
+}
+
+/* Caixa do contador */
+.contador-alunos {
+    display: inline-block;
+    padding: 20px 30px;
+    border: 2px solid #007BFF;
+    border-radius: 10px;
+    background-color: #e6f2ff;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efeito visual ao passar o mouse (opcional) */
+.contador-alunos:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 123, 255, 0.2);
+}
+
+/* Texto de descrição */
+.contador-alunos p {
+    font-size: 1.2em;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+/* Número de alunos */
+#qtdAlunos {
+    font-size: 3em;
+    font-weight: bold;
+    color: #0056b3;
+}
+
+/* Força html e body a ocupar 100% da altura da tela */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Centraliza o conteúdo do main vertical e horizontalmente */
+main.container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+}
+
