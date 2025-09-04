@@ -6,6 +6,12 @@
   <title>E. E ODAIR MARTINIANO DA SILVA MANDELA</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="images/MANDELA LOGO EXEMPLO.png" type="images/png">
+
+  <!-- Swiper CSS -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"
+  />
 </head>
 <body>
   <nav class="navbar">
@@ -20,15 +26,14 @@
       <li><a href="historia.html">HISTÓRIA</a></li>
       <li><a href="alunos.html">ALUNOS MATRICULADOS</a></li>
       <li><a href="curso.html">CURSO TÉCNICO</a></li>
+      <li><a href="localizacao.html">LOCALIZAÇÃO</a></li>
     </ul>
 
     <div class="botoes">
-        <a href="tel:+551137843772" target="_blank">
-          <button class="fale-conosco">Fale Conosco</button>
-        </a>
-      </div>
-
-      
+      <a href="tel:+551137843772" target="_blank">
+        <button class="fale-conosco">Fale Conosco</button>
+      </a>
+    </div>
   </nav>
 
   <section class="hero">
@@ -38,16 +43,65 @@
       <a href="historia.html" class="btn">Saiba mais</a>
     </div>
   </section>
-  
 
-  <footer>
-    <div class="footer-left">
-        <p>© 2025 E. E Odair Martiniano Mandela. Todos os direitos reservados.</p>
+  <!-- Seção do carrossel/destaques -->
+  <section class="destaques">
+    <h2>Destaques e Eventos</h2>
+    <div class="swiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <img src="images/Festa junina.jpg" alt="Evento 1" />
+          <h3>Festa Junina - 2025</h3>
+          <p>Nossa festa junina de 2025!</p>
+        </div>
+        <div class="swiper-slide">
+          <img src="images/formandos 2025- EJA.jpg" alt="Evento 2" />
+          <h3>Formandos EJA - 2025</h3>
+          <p>Formandos do EJA da classe de 2025!!</p>
+        </div>
+        <div class="swiper-slide">
+          <img src="images/OMASP - 2025.jpg" alt="Evento 3" />
+          <h3>OMASP 2025</h3>
+          <p>Nossos alunos premiados da OMASP 2025.</p>
+        </div>
+      </div>
+      <!-- Botões de navegação -->
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+      <!-- Paginação -->
+      <div class="swiper-pagination"></div>
     </div>
-    <div class="footer-right">
-        <p>Desenvolvido por <a href="https://github.com/lucanogueirasouza" target="_blank">Luca Nogueira</a></p>
+  </section>
+
+  <footer class="footer-expandido">
+    <div class="footer-section">
+      <h4>Links Rápidos</h4>
+      <ul>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="historia.html">História</a></li>
+        <li><a href="curso.html">Curso Técnico</a></li>
+        <li><a href="localizacao.html">Localização</a></li>
+        <li><a href="alunos.html">Alunos</a></li>
+        <li><a href="atualizacoes.html">Atualizações</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-section">
+      <h4>Redes Sociais</h4>
+      <div class="social-icons">
+        <a href="https://www.instagram.com/escolaodairmandela/" target="_blank">Instagram</a>
+        <a href="https://www.facebook.com/odairmandela" target="_blank">Facebook</a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2025 E. E Odair Martiniano Mandela. Todos os direitos reservados.</p>
+      <p>Desenvolvido por <a href="https://github.com/lucanogueirasouza" target="_blank">Luca Nogueira</a></p>
     </div>
   </footer>
- 
+
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
