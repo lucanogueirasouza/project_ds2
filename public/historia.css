@@ -394,3 +394,286 @@ footer {
     font-size: 0.9rem;
   }
 }
+
+/* Navbar unificada e aprimorada */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+    height: 80px;
+    background-color: #ffffffcc;
+    box-shadow: 0 2px 8px rgb(0 119 204 / 0.15);
+    backdrop-filter: saturate(180%) blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.navbar:hover {
+    background-color: #ffffff;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.logo img {
+    height: 70px;
+    border-radius: 12px;
+    filter: drop-shadow(1px 1px 1px rgba(0,0,0,0.1));
+    transition: transform 0.3s ease;
+    object-fit: contain;
+}
+
+.logo img:hover {
+    transform: scale(1.05);
+}
+
+.logo .destaque {
+    color: #0077cc;
+}
+
+.menu {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    font-weight: 600;
+    flex-wrap: wrap;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #0077cc;
+    font-size: 1.05rem;
+    padding: 6px 8px;
+    border-radius: 6px;
+    transition: all 0.25s ease;
+    position: relative;
+}
+
+.menu a::after {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: #0077cc;
+    transition: width 0.3s ease;
+    border-radius: 4px;
+}
+
+.menu a:hover::after,
+.menu a:focus::after {
+    width: 100%;
+}
+
+.menu a.active {
+    color: #004b8f;
+    font-weight: 700;
+}
+
+.menu a.active::after {
+    width: 0;
+}
+
+.navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.fale-conosco {
+    background-color: #0077cc;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.2s ease;
+    font-size: 1rem;
+    box-shadow: 0 6px 12px rgba(0, 119, 204, 0.35);
+}
+
+.fale-conosco:hover {
+    background: linear-gradient(135deg, #005999, #003f66);
+    box-shadow: 0 8px 20px rgba(0, 89, 155, 0.5);
+    transform: translateY(-2px);
+}
+
+/* --- ESTILO PARA O ÍCONE DE LOGIN (SEM SOMBREAMENTO) --- */
+.login-icon-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #0077cc;
+    font-size: 2.2em;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.login-icon-btn:hover {
+    color: #0056b3;
+    background-color: transparent;
+    transform: scale(1.1);
+}
+
+.login-icon-btn:active {
+    transform: scale(0.95);
+    background-color: transparent;
+}
+
+/* --- ESTILO PARA O BOTÃO DE LOGOUT (ATUALIZADO) --- */
+#logoutBtn {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.25s ease;
+    box-shadow: 0 3px 6px rgba(220, 53, 69, 0.2);
+}
+
+#logoutBtn:hover {
+    background: #c82333;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgba(220, 53, 69, 0.3);
+}
+
+#logoutBtn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(220, 53, 69, 0.3);
+}
+
+/* RESPONSIVIDADE (CÓDIGO OTIMIZADO) */
+/* Tablets e mobile médio */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        height: auto;
+        padding: 15px 20px;
+        gap: 12px;
+    }
+
+    .logo {
+        flex-direction: row;
+        align-items: center;
+        font-size: 20px;
+        margin-bottom: 10px;
+    }
+
+    .logo img {
+        height: 60px;
+    }
+
+    .menu {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        width: 100%;
+        margin-top: 12px;
+    }
+
+    .menu a {
+        font-size: 1rem;
+    }
+
+    .botoes {
+        flex-direction: column;
+        width: 100%;
+        justify-content: flex-start;
+        gap: 10px;
+        margin-top: 15px;
+    }
+
+    .fale-conosco {
+        width: 100%;
+        text-align: center;
+        white-space: normal;
+        padding: 12px 0;
+        font-size: 1.1rem;
+    }
+
+    .botao {
+        width: 100%;
+        text-align: center;
+        padding: 12px 0;
+    }
+    
+    main {
+        padding: 30px 15px;
+        margin: 30px auto;
+    }
+
+    .intro h1, .historia h2 {
+        font-size: 2rem;
+    }
+
+    .intro p, .historia p {
+        font-size: 1rem;
+    }
+
+    .missao-visao-valores {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .card {
+        flex: 1 1 100%;
+    }
+
+    footer {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+    }
+
+    .footer-expandido {
+        grid-template-columns: 1fr;
+        padding: 30px 20px;
+        gap: 30px;
+    }
+}
+
+/* Mobile pequeno */
+@media (max-width: 480px) {
+    .logo {
+        flex-direction: row;
+        font-size: 18px;
+    }
+
+    .logo img {
+        height: 50px;
+    }
+
+    .intro h1, .historia h2 {
+        font-size: 1.5rem;
+    }
+
+    .intro p, .historia p {
+        font-size: 0.9rem;
+    }
+
+    .fale-conosco, .botao {
+        font-size: 0.9rem;
+        padding: 10px 15px;
+    }
+}

@@ -569,3 +569,337 @@ body {
 .cookie-btn:hover {
     background-color: #2b7cbf; /* Cor mais escura no hover */
 }
+
+/* Navbar unificada e aprimorada */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+    height: 80px;
+    background-color: #ffffffcc;
+    box-shadow: 0 2px 8px rgb(0 119 204 / 0.15);
+    backdrop-filter: saturate(180%) blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.navbar:hover {
+    background-color: #ffffff;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.logo img {
+    height: 70px;
+    border-radius: 12px;
+    filter: drop-shadow(1px 1px 1px rgba(0,0,0,0.1));
+    transition: transform 0.3s ease;
+    object-fit: contain;
+}
+
+.logo img:hover {
+    transform: scale(1.05);
+}
+
+.logo .destaque {
+    color: #0077cc;
+}
+
+.menu {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    font-weight: 600;
+    flex-wrap: wrap;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #0077cc;
+    font-size: 1.05rem;
+    padding: 6px 8px;
+    border-radius: 6px;
+    transition: all 0.25s ease;
+    position: relative;
+}
+
+.menu a::after {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: #0077cc;
+    transition: width 0.3s ease;
+    border-radius: 4px;
+}
+
+.menu a:hover::after,
+.menu a:focus::after {
+    width: 100%;
+}
+
+.menu a.active {
+    color: #004b8f;
+    font-weight: 700;
+}
+
+.menu a.active::after {
+    width: 0;
+}
+
+.navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.fale-conosco {
+    background-color: #0077cc;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.2s ease;
+    font-size: 1rem;
+    box-shadow: 0 6px 12px rgba(0, 119, 204, 0.35);
+}
+
+.fale-conosco:hover {
+    background: linear-gradient(135deg, #005999, #003f66);
+    box-shadow: 0 8px 20px rgba(0, 89, 155, 0.5);
+    transform: translateY(-2px);
+}
+
+/* --- ESTILO PARA O ÍCONE DE LOGIN (SEM SOMBREAMENTO) --- */
+.login-icon-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #0077cc;
+    font-size: 2.2em;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.login-icon-btn:hover {
+    color: #0056b3;
+    background-color: transparent;
+    transform: scale(1.1);
+}
+
+.login-icon-btn:active {
+    transform: scale(0.95);
+    background-color: transparent;
+}
+
+/* --- ESTILO PARA O BOTÃO DE LOGOUT (ATUALIZADO) --- */
+#logoutBtn {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.25s ease;
+    box-shadow: 0 3px 6px rgba(220, 53, 69, 0.2);
+}
+
+#logoutBtn:hover {
+    background: #c82333;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgba(220, 53, 69, 0.3);
+}
+
+#logoutBtn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(220, 53, 69, 0.3);
+}
+
+/* RESPONSIVIDADE (CÓDIGO OTIMIZADO) */
+
+/* Tablets e Celulares grandes (até 768px) */
+@media (max-width: 768px) {
+    /* Navbar */
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        height: auto;
+        padding: 15px 20px;
+        gap: 15px;
+    }
+    
+    .logo {
+        margin-bottom: 10px;
+    }
+
+    .logo img {
+        height: 60px;
+    }
+
+    .menu {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        gap: 12px;
+        margin-top: 5px;
+    }
+    
+    .menu a {
+        font-size: 1rem;
+    }
+
+    .botoes {
+        flex-direction: column;
+        width: 100%;
+        justify-content: flex-start;
+        gap: 10px;
+    }
+
+    .fale-conosco {
+        width: 100%;
+        text-align: center;
+        white-space: normal;
+        padding: 12px 0;
+    }
+
+    /* Hero Section */
+    .hero {
+        height: 65vh;
+        margin: 20px;
+        padding: 0 10px;
+    }
+    
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero p {
+        font-size: 1.1rem;
+        margin-bottom: 25px;
+    }
+    
+    .btn {
+        padding: 12px 28px;
+        font-size: 1rem;
+    }
+
+    /* Destaques Section */
+    .destaques {
+        margin: 50px auto 70px;
+        padding: 0 15px;
+    }
+
+    .destaques h2 {
+        font-size: 2rem;
+        margin-bottom: 30px;
+    }
+    
+    .swiper {
+        padding-bottom: 40px;
+    }
+
+    .swiper-slide img {
+        height: 150px;
+    }
+    
+    .swiper-slide h3 {
+        font-size: 1.2rem;
+    }
+    
+    .swiper-slide p {
+        font-size: 0.95rem;
+    }
+    
+    /* Swiper Navigation */
+    .swiper-button-prev,
+    .swiper-button-next {
+        display: none; /* Oculta os botões de navegação em mobile, já que o arrastar é mais intuitivo */
+    }
+
+    /* Footer Expandido */
+    .footer-expandido {
+        grid-template-columns: 1fr;
+        padding: 30px 20px;
+        gap: 30px;
+    }
+
+    .footer-expandido .footer-bottom {
+        text-align: left;
+    }
+    
+    /* Cookie Banner */
+    .cookie-content {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+/* Celulares pequenos (até 480px) */
+@media (max-width: 480px) {
+    /* Navbar */
+    .logo {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 8px;
+        font-size: 20px;
+    }
+    
+    .logo img {
+        height: 50px;
+    }
+    
+    /* Hero Section */
+    .hero {
+        height: 50vh;
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+        margin-bottom: 20px;
+    }
+
+    .btn {
+        padding: 10px 24px;
+        font-size: 0.95rem;
+    }
+
+    /* Destaques Section */
+    .destaques h2 {
+        font-size: 1.8rem;
+    }
+    
+    .swiper-slide h3 {
+        font-size: 1.1rem;
+    }
+
+    .swiper-slide p {
+        font-size: 0.9rem;
+    }
+} 

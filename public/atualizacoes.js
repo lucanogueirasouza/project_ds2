@@ -6,6 +6,8 @@ const postBox = document.getElementById("postBox");
 const postInput = document.getElementById("postInput");
 const postButton = document.getElementById("postButton");
 const feed = document.getElementById("feed");
+const mediaInput = document.getElementById("mediaInput"); // NOVO: Campo de input de arquivos
+const mediaPreviewContainer = document.getElementById("media-preview-container"); // NOVO: Contêiner de pré-visualização
 
 // Referências ao novo modal e botões
 const loginModal = document.getElementById("loginModal");
@@ -23,6 +25,7 @@ if (!notificationContainer) {
 }
 
 let isAdmin = false; // controla se o usuário é admin
+let filesToUpload = []; // NOVO: Armazena os arquivos para upload
 
 // Função de notificação
 function notify(message, type = "info", duration = 3000) {
@@ -59,6 +62,8 @@ function parseJwt(token) {
 // Atualiza interface conforme login e admin
 function atualizarInterface() {
     const token = localStorage.getItem("token");
+    const tituloAvisos = document.getElementById("avisosTitulo");
+
     if (token) {
         const payload = parseJwt(token);
         isAdmin = payload?.isAdmin || false;
@@ -66,12 +71,21 @@ function atualizarInterface() {
         postBox.style.display = "flex";
         loginBtn.style.display = "none";
         logoutBtn.style.display = "inline-block";
+
+        // Se for admin, esconde o título "Avisos"
+        if (isAdmin) {
+            tituloAvisos.style.display = "none";
+        }
     } else {
         isAdmin = false;
         postBox.style.display = "none";
         loginBtn.style.display = "inline-block";
         logoutBtn.style.display = "none";
+
+        // Usuário comum → mostra o título
+        tituloAvisos.style.display = "block";
     }
+
     loginModal.style.display = "none";
 }
 
@@ -82,6 +96,20 @@ function renderPost(post) {
 
     const autorInicial = post.autor ? post.autor.charAt(0).toUpperCase() : '?';
     
+    let mediaHTML = ''; // NOVO: HTML para exibir a mídia
+    if (post.media && post.media.length > 0) {
+        mediaHTML = `<div class="post-media-container">`;
+        post.media.forEach(mediaPath => {
+            const extension = mediaPath.split('.').pop().toLowerCase();
+            if (['jpg', 'jpeg', 'png', 'gif'].includes(extension)) {
+                mediaHTML += `<img src="${API_URL}/${mediaPath}" alt="Imagem do post" class="post-media">`;
+            } else if (['mp4', 'webm', 'ogg'].includes(extension)) {
+                mediaHTML += `<video src="${API_URL}/${mediaPath}" controls class="post-media"></video>`;
+            }
+        });
+        mediaHTML += `</div>`;
+    }
+
     postElement.innerHTML = `
         <div class="post-header">
             <div class="post-avatar">${autorInicial}</div>
@@ -96,6 +124,7 @@ function renderPost(post) {
         <div class="post-content">
             ${post.texto}
         </div>
+        ${mediaHTML}
     `;
 
     if (isAdmin) {
@@ -157,10 +186,52 @@ async function apagarPost(id) {
     }
 }
 
+// Pré-visualiza os arquivos selecionados
+mediaInput.addEventListener("change", (e) => {
+    filesToUpload = Array.from(e.target.files);
+    renderPreviews(); // Chamar a função para renderizar as pré-visualizações
+});
+
+function renderPreviews() {
+    mediaPreviewContainer.innerHTML = '';
+    filesToUpload.forEach((file, index) => {
+        const previewDiv = document.createElement('div');
+        previewDiv.classList.add('media-preview');
+
+        if (file.type.startsWith('image/')) {
+            const img = document.createElement('img');
+            img.src = URL.createObjectURL(file);
+            previewDiv.appendChild(img);
+        } else if (file.type.startsWith('video/')) {
+            const video = document.createElement('video');
+            video.src = URL.createObjectURL(file);
+            video.muted = true;
+            video.autoplay = false;
+            video.controls = false; // Removido controls para deixar mais clean na prévia
+            previewDiv.appendChild(video);
+        }
+
+        const removeBtn = document.createElement('button');
+        removeBtn.classList.add('remove-media');
+        removeBtn.innerHTML = '<i class="fas fa-times"></i>';
+        removeBtn.addEventListener('click', () => {
+            filesToUpload.splice(index, 1);
+            // IMPORTANTE: Se todos os arquivos forem removidos, o input.value deve ser limpo
+            if (filesToUpload.length === 0) {
+                mediaInput.value = ''; // Limpa o valor do input file
+            }
+            renderPreviews(); // Renderiza novamente após remover
+        });
+        previewDiv.appendChild(removeBtn);
+        mediaPreviewContainer.appendChild(previewDiv);
+    });
+}
+
 postButton.addEventListener("click", async () => {
     const texto = postInput.value.trim();
-    if (!texto) {
-        notify("Digite algo para publicar!", "warning");
+    
+    if (!texto && filesToUpload.length === 0) {
+        notify("Digite algo ou anexe um arquivo para publicar!", "warning");
         return;
     }
 
@@ -171,17 +242,26 @@ postButton.addEventListener("click", async () => {
     }
 
     try {
+        const formData = new FormData();
+        formData.append("texto", texto);
+        
+        filesToUpload.forEach(file => {
+            formData.append("media", file);
+        });
+
         const res = await fetch(`${API_URL}/posts`, {
             method: "POST",
             headers: {
-                "Content-Type": "application/json",
                 Authorization: "Bearer " + token,
             },
-            body: JSON.stringify({ texto }),
+            body: formData,
         });
 
         if (res.ok) {
             postInput.value = "";
+            filesToUpload = []; // Limpa os arquivos
+            mediaInput.value = ''; // Limpa o input
+            mediaPreviewContainer.innerHTML = ''; // Limpa a pré-visualização
             carregarPosts();
             notify("Post publicado com sucesso!", "success");
         } else {
@@ -247,35 +327,6 @@ confirmLogin.addEventListener("click", async () => {
         notify("Erro ao conectar com o servidor", "error");
     }
 });
-function atualizarInterface() {
-    const token = localStorage.getItem("token");
-    const tituloAvisos = document.getElementById("avisosTitulo");
-
-    if (token) {
-        const payload = parseJwt(token);
-        isAdmin = payload?.isAdmin || false;
-
-        postBox.style.display = "flex";
-        loginBtn.style.display = "none";
-        logoutBtn.style.display = "inline-block";
-
-        // Se for admin, esconde o título "Avisos"
-        if (isAdmin) {
-            tituloAvisos.style.display = "none";
-        }
-    } else {
-        isAdmin = false;
-        postBox.style.display = "none";
-        loginBtn.style.display = "inline-block";
-        logoutBtn.style.display = "none";
-
-        // Usuário comum → mostra o título
-        tituloAvisos.style.display = "block";
-    }
-
-    loginModal.style.display = "none";
-}
-
 
 // Inicialização
 carregarPosts();

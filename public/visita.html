@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Agende Sua Visita | E. E. Odair Mandela</title>
+    <link rel="stylesheet" href="visita.css" />
+    <link rel="icon" href="images/MANDELA LOGO EXEMPLO.png" type="images/png">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">
+            <img src="images/MANDELA LOGO EXEMPLO.png" alt="Logo Mandela" />
+            <span>E. E <span class="destaque">ODAIR MANDELA</span></span>
+        </div>
+
+        <ul class="menu">
+            <li><a href="index.html" class="active">INÍCIO</a></li>
+            <li><a href="atualizacoes.html">ATUALIZAÇÕES</a></li>
+            <li><a href="historia.html">HISTÓRIA</a></li>
+            <li><a href="alunos.html">ALUNOS MATRICULADOS</a></li>
+            <li><a href="curso.html">CURSO TÉCNICO</a></li>
+            <li><a href="localizacao.html">LOCALIZAÇÃO</a></li>
+        </ul>
+
+        <div class="botoes">
+            <a href="tel:+551137843772" target="_blank">
+                <button class="fale-conosco">Fale Conosco</button>
+            </a>
+        </div>
+    </nav>
+
+    <main>
+        <section class="visita-hero">
+            <div class="visita-content">
+                <h1 class="main-title">O Futuro do seu Filho Começa Aqui.</h1>
+                <p class="subtitle">Descubra o nosso diferencial e garanta a vaga do seu filho!</p>
+            </div>
+        </section>
+
+        <section class="beneficios-section">
+            <div class="beneficios-grid">
+                <div class="beneficio-card">
+                    <i class="fas fa-lightbulb"></i>
+                    <h3>Metodologia de Ensino Inovadora</h3>
+                    <p>Focada no desenvolvimento integral, preparando para os desafios do futuro.</p>
+                </div>
+                
+                <div class="beneficio-card">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h3>Professores Especializados</h3>
+                    <p>Equipe docente altamente qualificada, comprometida com a excelência.</p>
+                </div>
+
+                <div class="beneficio-card">
+                    <i class="fas fa-heart"></i>
+                    <h3>Ambiente Acolhedor e Seguro</h3>
+                    <p>Espaço ideal para o aprendizado e crescimento com tranquilidade.</p>
+                </div>
+                
+                <div class="beneficio-card">
+                    <i class="fas fa-building-columns"></i>
+                    <h3>Estrutura Moderna e Completa</h3>
+                    <p>Salas equipadas, laboratórios e áreas de lazer que inspiram a criatividade.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="form-section">
+            <h2>Preencha o Formulário e Fale com a Nossa Equipe</h2>
+            <p>Deixe seus dados para agendarmos sua visita e tirarmos todas as suas dúvidas.</p>
+            <form id="visitaForm" class="visita-form">
+                <div class="form-group">
+                    <label for="nome">Nome Completo</label>
+                    <input type="text" id="nome" name="nome" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="telefone">Telefone</label>
+                    <input type="tel" id="telefone" name="telefone" required>
+                </div>
+                <button type="submit" class="submit-btn">Agendar Visita</button>
+            </form>
+            <div id="form-status" class="form-status-message"></div>
+        </section>
+    </main>
+
+    <footer class="footer-expandido">
+        <div class="footer-section">
+            <h4>Links Rápidos</h4>
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="historia.html">História</a></li>
+                <li><a href="curso.html">Curso Técnico</a></li>
+                <li><a href="localizacao.html">Localização</a></li>
+                <li><a href="alunos.html">Alunos</a></li>
+                <li><a href="atualizacoes.html">Atualizações</a></li>
+                <li><a href="visita.html">Agende sua Visita!</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-section">
+            <h4>Redes Sociais</h4>
+            <div class="social-icons">
+                <a href="https://www.instagram.com/escolaodairmandela/" target="_blank">Instagram</a>
+                <a href="https://www.facebook.com/odairmandela" target="_blank">Facebook</a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2025 E. E Odair Martiniano Mandela. Todos os direitos reservados.</p>
+            <p>Desenvolvido por <a href="https://github.com/lucanogueirasouza" target="_blank">Luca Nogueira</a></p>
+        </div>
+    </footer>
+    <script src="visita.js"></script>
+</body>
+</html>
