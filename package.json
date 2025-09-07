@@ -1,7 +1,7 @@
 {
   "name": "site-mandela",
   "version": "1.0.0",
-  "description": "",
+  "description": "Hey there, future coding superstars! 🎉 This is the **official repository** for the **System Development Technical Course**, where you’ll unleash your creativity, sling some code, and team up to build mind-blowing projects that’ll make everyone go \"WHOA!\" 😎",
   "main": "script.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -17,6 +17,15 @@
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.18.0",
-    "mongoose": "^8.18.0"
-  }
+    "mongoose": "^8.18.0",
+    "multer": "^2.0.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lucanogueirasouza/project_ds2.git"
+  },
+  "bugs": {
+    "url": "https://github.com/lucanogueirasouza/project_ds2/issues"
+  },
+  "homepage": "https://github.com/lucanogueirasouza/project_ds2#readme"
 }

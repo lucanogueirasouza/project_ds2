@@ -523,3 +523,49 @@ body {
     font-size: 0.9rem;
   }
 }
+
+/* Estilo da barra de cookies */
+.cookie-banner {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #222; /* Cor de fundo escura, similar ao seu footer */
+    color: white;
+    padding: 15px 20px;
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    display: none; /* Inicia oculto, será exibido pelo JavaScript */
+    font-family: Arial, sans-serif;
+}
+
+.cookie-content {
+    display: flex;
+    justify-content: center; /* Centraliza o conteúdo */
+    align-items: center;
+    flex-wrap: wrap; /* Permite quebrar linha em telas pequenas */
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.cookie-content p {
+    margin: 0;
+    font-size: 14px;
+    text-align: center;
+}
+
+.cookie-btn {
+    background-color: #38a4ff; /* Cor do botão similar à sua identidade visual */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.cookie-btn:hover {
+    background-color: #2b7cbf; /* Cor mais escura no hover */
+}
