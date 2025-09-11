@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Alunos Matriculados</title>
+    <title>Alunos Matriculados | E. E. Odair Mandela</title>
 
     <!-- Google Fonts: Montserrat para o título -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 
     <link rel="stylesheet" href="atualizacoes.css" />
     <link rel="stylesheet" href="alunos.css" />
@@ -14,27 +15,35 @@
 </head>
 <body>
 
-    <nav class="navbar">
+  <nav class="navbar">
+    <div class="header-container">
         <div class="logo">
             <img src="images/MANDELA LOGO EXEMPLO.png" alt="Logo Mandela" />
             <span>E. E <span class="destaque">ODAIR MANDELA</span></span>
         </div>
-
-        <ul class="menu">
-            <li><a href="index.html">INÍCIO</a></li>
-            <li><a href="atualizacoes.html">ATUALIZAÇÕES</a></li>
-            <li><a href="historia.html">HISTÓRIA</a></li>
-            <li><a href="alunos.html" class="active">ALUNOS MATRICULADOS</a></li>
-            <li><a href="curso.html">CURSO TÉCNICO</a></li>
-            <li><a href="localizacao.html">LOCALIZAÇÃO</a></li>
-        </ul>
-
-        <div class="botoes">
-            <a href="tel:+551137843772" target="_blank" rel="noopener noreferrer">
-                <button class="fale-conosco">Fale Conosco</button>
-            </a>
+        
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
         </div>
-    </nav>
+    </div>
+
+    <ul class="menu">
+        <li><a href="index.html">INÍCIO</a></li>
+        <li><a href="atualizacoes.html">ATUALIZAÇÕES</a></li>
+        <li><a href="historia.html">HISTÓRIA</a></li>
+        <li><a href="alunos.html" class="active">ALUNOS MATRICULADOS</a></li>
+        <li><a href="curso.html">CURSO TÉCNICO</a></li>
+        <li><a href="localizacao.html">LOCALIZAÇÃO</a></li>
+    </ul>
+
+    <div class="botoes">
+        <a href="tel:+551137843772" target="_blank" rel="noopener noreferrer">
+            <button class="fale-conosco">Fale Conosco</button>
+        </a>
+    </div>
+</nav>
 
     <main class="container">
         <section class="alunos-info">
@@ -73,7 +82,24 @@
     <p>Desenvolvido por <a href="https://github.com/lucanogueirasouza" target="_blank">Luca Nogueira</a></p>
   </div>
 </footer>
+    <div class="chatbot-container" id="chatbot-container">
+    <div class="chatbot-header" id="chatbot-header">
+        <span>Chatbot</span>
+        <button id="close-chat" class="close-chat-btn">x</button>
+    </div>
+    <div class="chatbot-body" id="chatbot-body">
+        <div class="message bot-message">Olá! Sou o assistente virtual da escola. Posso te ajudar com dúvidas sobre matrículas, horários e localização. (Por favor, para que eu consiga te ajudar de forma eficaz e rápida, digite as palavras acentuadas formalmente).</div>
+    </div>
+    <div class="chatbot-footer">
+        <input type="text" id="user-input" placeholder="Digite sua pergunta...">
+        <button id="send-btn">Enviar</button>
+    </div>
+</div>
 
-    <script src="alunos-matriculados.js"></script>
+<div class="chatbot-toggle-btn" id="chatbot-toggle-btn">
+    <i class="fas fa-comment-dots"></i>
+</div>
+
+    <script src="alunos.js"></script>
 </body>
 </html>

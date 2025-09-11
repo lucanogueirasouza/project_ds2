@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  meu-app-web:
+    build: .
+    # Mapeia a porta padrão HTTP (80) para a porta da sua aplicação (3001)
+    ports:
+      - "80:3001"
+    # Carrega as variáveis de ambiente, incluindo a URI do banco de dados na nuvem
+    env_file: ./.env
+    # Usa o comando 'start' do seu package.json para rodar em produção,
+    # que é mais eficiente e seguro que o 'dev'
+    command: npm start

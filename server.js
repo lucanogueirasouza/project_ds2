@@ -11,15 +11,10 @@ const fs = require('fs');
 const app = express();
 const PORT = process.env.PORT || 3001;
 const JWT_SECRET = process.env.JWT_SECRET;
-const MONGO_URI = process.env.MONGO_URI;
 
 // Verificação simples para variáveis obrigatórias
 if (!JWT_SECRET) {
     console.error('❌ JWT_SECRET não está definido no .env');
-    process.exit(1);
-}
-if (!MONGO_URI) {
-    console.error('❌ MONGO_URI não está definido no .env');
     process.exit(1);
 }
 
@@ -62,15 +57,48 @@ const upload = multer({
 app.use(express.static('public')); // Servir arquivos estáticos da pasta 'public'
 app.use('/uploads', express.static('uploads')); // NOVO: Servir arquivos da pasta 'uploads'
 
-// Conexão com o MongoDB (sem opções depreciadas)
-mongoose.connect(MONGO_URI)
-    .then(() => console.log('🟢 Conectado ao MongoDB'))
-    .catch(err => console.error('❌ Erro ao conectar ao MongoDB:', err));
+// ROTA ADICIONADA: Responde com uma mensagem simples para confirmar que o servidor está funcionando.
+app.get('/', (req, res) => {
+  res.send('Servidor Node.js está funcionando!');
+});
 
-// Schema e modelo do post (AGORA COM CAMPO DE MÍDIA)
+// CORREÇÃO E ATUALIZAÇÃO: Lógica para escolher e conectar ao banco de dados com autenticação
+const MONGO_TARGET = process.env.MONGO_TARGET;
+let MONGO_URI;
+
+if (MONGO_TARGET === 'cloud') {
+    MONGO_URI = process.env.MONGO_URI_CLOUD;
+} else if (MONGO_TARGET === 'local') {
+    const DB_USER = process.env.DB_USER;
+    const DB_PASSWORD = process.env.DB_PASSWORD;
+    const DB_NAME = 'escola-odair-mandela'; // Usando o nome do banco de dados do seu log
+    if (!DB_USER || !DB_PASSWORD) {
+        console.error('❌ DB_USER ou DB_PASSWORD não estão definidos para o banco de dados local.');
+        process.exit(1);
+    }
+    // CORREÇÃO: A URI agora usa o usuário e a senha para autenticação
+    MONGO_URI = `mongodb://${DB_USER}:${DB_PASSWORD}@meu-banco-de-dados:27017/${DB_NAME}?authSource=admin`;
+} else {
+    console.error('❌ MONGO_TARGET não está configurado corretamente no .env (deve ser "cloud" ou "local").');
+    process.exit(1);
+}
+
+mongoose.connect(MONGO_URI)
+    .then(() => {
+        console.log('🟢 Conectado ao MongoDB');
+        app.listen(PORT, () => {
+            console.log(`🚀 Servidor rodando em http://localhost:${PORT}`);
+        });
+    })
+    .catch(err => {
+        console.error('❌ Erro ao conectar ao MongoDB:', err);
+        process.exit(1);
+    });
+
+// Schema e modelo do post
 const postSchema = new mongoose.Schema({
-    texto: { type: String, required: false }, // O texto não é mais obrigatório
-    media: { type: [String], default: [] }, // NOVO: Array de strings para os caminhos dos arquivos
+    texto: { type: String, required: false },
+    media: { type: [String], default: [] },
     data: { type: Date, default: Date.now },
     autor: { type: String, required: true },
 });
@@ -92,6 +120,7 @@ const users = [
     { username: process.env.USER2, password: bcrypt.hashSync(process.env.PASS2, 10), isAdmin: true },
     { username: process.env.USER3, password: bcrypt.hashSync(process.env.PASS3, 10), isAdmin: true },
     { username: process.env.USER4, password: bcrypt.hashSync(process.env.PASS4, 10), isAdmin: true },
+    { username: process.env.USER5, password: bcrypt.hashSync(process.env.PASS5, 10), isAdmin: true },
 ];
 
 // Middleware para validar token JWT
@@ -110,19 +139,15 @@ function authenticateToken(req, res, next) {
 // Rota de login (gera JWT)
 app.post('/login', async (req, res) => {
     const { username, password } = req.body;
-
     const user = users.find(u => u.username === username);
     if (!user) return res.status(400).json({ message: 'Usuário ou senha inválidos' });
-
     const match = await bcrypt.compare(password, user.password);
     if (!match) return res.status(400).json({ message: 'Usuário ou senha inválidos' });
-
     const token = jwt.sign(
         { username: user.username, isAdmin: user.isAdmin },
         JWT_SECRET,
         { expiresIn: '1h' }
     );
-
     res.json({ token });
 });
 
@@ -131,21 +156,17 @@ app.post('/posts', authenticateToken, upload.array('media', 5), async (req, res)
     if (!req.user.isAdmin) {
         return res.status(403).json({ message: "Apenas administradores podem publicar posts." });
     }
-
     const { texto } = req.body;
     const mediaPaths = req.files ? req.files.map(file => file.path.replace(/\\/g, '/')) : [];
-
     if (!texto && mediaPaths.length === 0) {
         return res.status(400).json({ message: "Texto ou arquivo de mídia é obrigatório" });
     }
-
     try {
         const novoPost = new Post({
             texto,
             media: mediaPaths,
             autor: req.user.username || "Administrador",
         });
-
         await novoPost.save();
         res.status(201).json({ message: "Post criado com sucesso" });
     } catch (err) {
@@ -170,7 +191,6 @@ app.delete('/posts/:id', authenticateToken, async (req, res) => {
     if (!req.user.isAdmin) {
         return res.status(403).json({ message: "Apenas administradores podem apagar posts." });
     }
-
     try {
         const post = await Post.findById(req.params.id);
         if (!post) {
@@ -209,16 +229,10 @@ app.post('/comments', authenticateToken, async (req, res) => {
             movie_id,
             text
         });
-
         await novoComentario.save();
         res.status(201).json({ message: "Comentário adicionado com sucesso!" });
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: "Erro ao salvar o comentário." });
     }
-});
-
-// Iniciar o servidor
-app.listen(PORT, () => {
-    console.log(`🚀 Servidor rodando em http://localhost:${PORT}`);
 });

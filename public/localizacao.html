@@ -3,10 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Localização</title>
+  <title>Nossa Localização | E. E. Odair Mandela</title>
 
   <!-- Importa fonte Inter do Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 
   <link rel="stylesheet" href="localizacao.css" />
   <link rel="icon" href="images/MANDELA LOGO EXEMPLO.png" type="image/png" />
@@ -14,27 +15,35 @@
 <body>
 
   <!-- NAVBAR -->
-  <nav class="navbar">
-    <div class="logo">
-      <img src="images/MANDELA LOGO EXEMPLO.png" alt="Logo Mandela" />
-      <span>E. E <span class="destaque">ODAIR MANDELA</span></span>
+<nav class="navbar">
+    <div class="header-container">
+        <div class="logo">
+            <img src="images/MANDELA LOGO EXEMPLO.png" alt="Logo Mandela" />
+            <span>E. E <span class="destaque">ODAIR MANDELA</span></span>
+        </div>
+        
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
     </div>
 
     <ul class="menu">
-      <li><a href="index.html">INÍCIO</a></li>
-      <li><a href="atualizacoes.html">ATUALIZAÇÕES</a></li>
-      <li><a href="historia.html">HISTÓRIA</a></li>
-      <li><a href="alunos.html">ALUNOS MATRICULADOS</a></li>
-      <li><a href="curso.html">CURSO TÉCNICO</a></li>
-      <li><a href="localizacao.html" class="active">LOCALIZAÇÃO</a></li>
+        <li><a href="index.html">INÍCIO</a></li>
+        <li><a href="atualizacoes.html">ATUALIZAÇÕES</a></li>
+        <li><a href="historia.html">HISTÓRIA</a></li>
+        <li><a href="alunos.html">ALUNOS MATRICULADOS</a></li>
+        <li><a href="curso.html">CURSO TÉCNICO</a></li>
+        <li><a href="localizacao.html" class="active">LOCALIZAÇÃO</a></li>
     </ul>
 
     <div class="botoes">
-      <a href="tel:+551137843772" target="_blank">
-        <button class="fale-conosco">Fale Conosco</button>
-      </a>
+        <a href="tel:+551137843772" target="_blank">
+            <button class="fale-conosco">Fale Conosco</button>
+        </a>
     </div>
-  </nav>
+</nav>
 
   <!-- CONTEÚDO PRINCIPAL -->
   <main class="conteudo-localizacao">
@@ -87,6 +96,23 @@
     <p>Desenvolvido por <a href="https://github.com/lucanogueirasouza" target="_blank">Luca Nogueira</a></p>
   </div>
 </footer>
+    <div class="chatbot-container" id="chatbot-container">
+    <div class="chatbot-header" id="chatbot-header">
+        <span>Chatbot</span>
+        <button id="close-chat" class="close-chat-btn">x</button>
+    </div>
+    <div class="chatbot-body" id="chatbot-body">
+        <div class="message bot-message">Olá! Sou o assistente virtual da escola. Posso te ajudar com dúvidas sobre matrículas, horários e localização. (Por favor, para que eu consiga te ajudar de forma eficaz e rápida, digite as palavras acentuadas formalmente).</div>
+    </div>
+    <div class="chatbot-footer">
+        <input type="text" id="user-input" placeholder="Digite sua pergunta...">
+        <button id="send-btn">Enviar</button>
+    </div>
+</div>
 
+<div class="chatbot-toggle-btn" id="chatbot-toggle-btn">
+    <i class="fas fa-comment-dots"></i>
+</div>
+  <script src="localizacao.js"></script>
 </body>
 </html>

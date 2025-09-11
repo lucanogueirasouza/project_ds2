@@ -906,3 +906,259 @@ button.apagar:hover {
     background-color: transparent; /* Certifica-se de que não haja fundo */
 }
 
+/* Responsividade */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        height: auto;
+        padding: 15px 20px;
+    }
+    
+    .logo {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    /* Exibe o ícone do menu em telas pequenas */
+    .menu-toggle {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        width: 30px;
+        height: 25px;
+        cursor: pointer;
+    }
+    
+    .menu-toggle .bar {
+        width: 100%;
+        height: 3px;
+        background-color: #0077cc;
+        border-radius: 5px;
+        transition: all 0.3s ease-in-out;
+    }
+    
+    .menu-toggle.is-active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .menu-toggle.is-active .bar:nth-child(1) {
+        transform: translateY(11px) rotate(45deg);
+    }
+    
+    .menu-toggle.is-active .bar:nth-child(3) {
+        transform: translateY(-11px) rotate(-45deg);
+    }
+
+    /* Oculta o menu e os botões por padrão no mobile */
+    .menu,
+    .navbar-actions {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+        gap: 15px;
+        transition: all 0.5s ease;
+        padding: 15px 0;
+        align-items: center;
+    }
+
+    /* Estilos do menu e botões quando ativos */
+    .menu.is-active,
+    .navbar-actions.is-active {
+        display: flex;
+    }
+
+    .menu li {
+        width: 100%;
+        margin: 0;
+    }
+    
+    .menu a {
+        display: block;
+        padding: 15px 0;
+        width: 100%;
+        border-bottom: 1px solid rgba(0, 119, 204, 0.1);
+    }
+
+    .menu a::after {
+        display: none; /* Oculta a animação de sublinhado em mobile para um visual mais limpo */
+    }
+
+    .fale-conosco {
+        width: 100%;
+        text-align: center;
+        white-space: normal;
+        padding: 12px 0;
+    }
+
+    /* Ajustes para outras seções em telas menores */
+    .post-box, .feed {
+        width: 95%;
+        padding: 15px;
+    }
+    
+    .post-box h2 {
+        font-size: 1.4rem;
+    }
+    
+    .post-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .post-avatar {
+        margin-right: 0;
+        margin-bottom: 8px;
+    }
+    
+    button.apagar {
+        position: static;
+        margin-top: 10px;
+        align-self: flex-end;
+    }
+
+    .footer-expandido {
+        grid-template-columns: 1fr;
+        padding: 30px 20px;
+        gap: 30px;
+    }
+
+    .footer-expandido .footer-bottom {
+        text-align: left;
+    }
+}
+
+/* Estilo do botão que abre o chat */
+.chatbot-toggle-btn {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(45deg, #0077cc, #005999);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    z-index: 1000;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.chatbot-toggle-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.35);
+}
+
+/* Estilo da janela do chat */
+.chatbot-container {
+    position: fixed;
+    bottom: 90px;
+    right: 25px;
+    width: 350px;
+    height: 450px;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    display: none; /* Oculto por padrão */
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 1000;
+    transition: all 0.4s ease-in-out;
+    transform: translateY(20px);
+    opacity: 0;
+}
+
+.chatbot-container.is-visible {
+    display: flex;
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.chatbot-header {
+    background: linear-gradient(45deg, #0077cc, #005999);
+    color: white;
+    padding: 15px;
+    font-weight: bold;
+    font-size: 1.1em;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chatbot-header .close-chat-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.2em;
+    cursor: pointer;
+}
+
+.chatbot-body {
+    flex-grow: 1;
+    padding: 15px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: #eef7ff;
+}
+
+.message {
+    padding: 10px;
+    border-radius: 12px;
+    max-width: 85%;
+}
+
+.bot-message {
+    background-color: #0077cc;
+    color: white;
+    align-self: flex-start;
+    border-bottom-left-radius: 4px;
+}
+
+.user-message {
+    background-color: #fff;
+    color: #333;
+    align-self: flex-end;
+    border: 1px solid #ddd;
+    border-bottom-right-radius: 4px;
+}
+
+.chatbot-footer {
+    padding: 10px;
+    background-color: #f1f1f1;
+    display: flex;
+    border-top: 1px solid #ddd;
+}
+
+.chatbot-footer input {
+    flex-grow: 1;
+    padding: 8px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    outline: none;
+    padding-left: 15px;
+}
+
+.chatbot-footer button {
+    background-color: #0077cc;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 20px;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.chatbot-footer button:hover {
+    background-color: #005999;
+}

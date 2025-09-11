@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Atualizações</title>
+    <title>Atualizações | E. E. Odair Mandela</title>
     <link rel="stylesheet" href="atualizacoes.css" />
     <link rel="icon" href="images/MANDELA LOGO EXEMPLO.png" type="image/png" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
@@ -14,6 +14,12 @@
             <div class="logo">
                 <img src="images/MANDELA LOGO EXEMPLO.png" alt="Logo Mandela" />
                 <span>E. E <span class="destaque">ODAIR MANDELA</span></span>
+                
+                <div class="menu-toggle" id="mobile-menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
             </div>
 
             <ul class="menu">
@@ -37,11 +43,11 @@
                 <button id="logoutBtn" style="display: none;">Sair</button>
             </div>
         </nav>
-
+        
         <h2 id="avisosTitulo" class="feed-titulo" style="display: none;">
             📢 Avisos/Atualizações da Escola
         </h2>
-
+        
         <main>
             <section class="post-box" id="postBox" style="display: none;">
                 <h2>📢 Nova Publicação</h2>
@@ -49,7 +55,7 @@
                     <textarea id="postInput" placeholder="O que você deseja compartilhar hoje?"></textarea>
                     
                     <div id="media-preview-container" class="media-preview-container"></div>
-
+                    
                     <div class="post-actions">
                         <div class="upload-btn-wrapper">
                             <i class="fas fa-paperclip"></i>
@@ -60,10 +66,9 @@
                     </div>
                 </div>
             </section>
-            <section class="feed" id="feed">
-            </section>
+            <section class="feed" id="feed"></section>
         </main>
-
+        
         <div id="loginModal" class="modal" style="display: none;">
             <div class="modal-content">
                 <span class="close-btn">&times;</span>
@@ -75,35 +80,29 @@
                 </div>
             </div>
         </div>
-
+        
         <footer class="footer-expandido">
-            <div class="footer-section">
-                <h4>Links Rápidos</h4>
-                <ul>
-                    <li><a href="index.html">Início</a></li>
-                    <li><a href="historia.html">História</a></li>
-                    <li><a href="curso.html">Curso Técnico</a></li>
-                    <li><a href="localizacao.html">Localização</a></li>
-                    <li><a href="alunos.html">Alunos</a></li>
-                    <li><a href="atualizacoes.html">Atualizações</a></li>
-                    <li><a href="visita.html">Agende sua Visita!</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-section">
-                <h4>Redes Sociais</h4>
-                <div class="social-icons">
-                    <a href="https://www.instagram.com/escolaodairmandela/" target="_blank">Instagram</a>
-                    <a href="https://www.facebook.com/odairmandela" target="_blank">Facebook</a>
-                </div>
-            </div>
-
-            <div class="footer-bottom">
-                <p>© 2025 E. E Odair Martiniano Mandela. Todos os direitos reservados.</p>
-                <p>Desenvolvido por <a href="https://github.com/lucanogueirasouza" target="_blank">Luca Nogueira</a></p>
-            </div>
-        </footer>
+            </footer>
     </div>
     <script src="atualizacoes.js"></script>
+
+        <div class="chatbot-container" id="chatbot-container">
+    <div class="chatbot-header" id="chatbot-header">
+        <span>Chatbot</span>
+        <button id="close-chat" class="close-chat-btn">x</button>
+    </div>
+    <div class="chatbot-body" id="chatbot-body">
+        <div class="message bot-message">Olá! Sou o assistente virtual da escola. Posso te ajudar com dúvidas sobre matrículas, horários e localização. (Por favor, para que eu consiga te ajudar de forma eficaz e rápida, digite as palavras acentuadas formalmente).</div>
+    </div>
+    <div class="chatbot-footer">
+        <input type="text" id="user-input" placeholder="Digite sua pergunta...">
+        <button id="send-btn">Enviar</button>
+    </div>
+</div>
+
+<div class="chatbot-toggle-btn" id="chatbot-toggle-btn">
+    <i class="fas fa-comment-dots"></i>
+</div>
+
 </body>
 </html>

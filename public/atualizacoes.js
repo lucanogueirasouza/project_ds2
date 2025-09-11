@@ -1,13 +1,17 @@
 // Este arquivo foi atualizado para usar um modal de login + notificações.
 
-const API_URL = "http://localhost:3001";
+// A URL da API agora é dinâmica. Ela usa a mesma origem do site que está sendo acessado.
+const API_URL = window.location.origin;
+
+// O restante do seu código JavaScript vai aqui.
+// ... (o restante do seu código atual) ...
 
 const postBox = document.getElementById("postBox");
 const postInput = document.getElementById("postInput");
 const postButton = document.getElementById("postButton");
 const feed = document.getElementById("feed");
-const mediaInput = document.getElementById("mediaInput"); // NOVO: Campo de input de arquivos
-const mediaPreviewContainer = document.getElementById("media-preview-container"); // NOVO: Contêiner de pré-visualização
+const mediaInput = document.getElementById("mediaInput");
+const mediaPreviewContainer = document.getElementById("media-preview-container");
 
 // Referências ao novo modal e botões
 const loginModal = document.getElementById("loginModal");
@@ -25,7 +29,7 @@ if (!notificationContainer) {
 }
 
 let isAdmin = false; // controla se o usuário é admin
-let filesToUpload = []; // NOVO: Armazena os arquivos para upload
+let filesToUpload = []; // Armazena os arquivos para upload
 
 // Função de notificação
 function notify(message, type = "info", duration = 3000) {
@@ -95,7 +99,7 @@ function renderPost(post) {
     postElement.classList.add("post");
 
     const autorInicial = post.autor ? post.autor.charAt(0).toUpperCase() : '?';
-    
+
     let mediaHTML = ''; // NOVO: HTML para exibir a mídia
     if (post.media && post.media.length > 0) {
         mediaHTML = `<div class="post-media-container">`;
@@ -160,8 +164,8 @@ async function carregarPosts() {
 
 // Apagar post por ID
 async function apagarPost(id) {
-    if (!confirm("Tem certeza que deseja apagar este post?")) return;
-
+    // CORREÇÃO: Removido o `confirm()` porque ele não funciona neste ambiente.
+    // A ação de apagar agora acontece diretamente, com a notificação.
     const token = localStorage.getItem("token");
     if (!token) {
         notify("Você precisa estar logado para apagar posts", "warning");
@@ -181,8 +185,10 @@ async function apagarPost(id) {
             const err = await res.json();
             notify(err.message || "Não foi possível apagar o post", "error");
         }
-    } catch {
-        notify("Erro ao conectar com o servidor", "error");
+    } catch (err) {
+        // Adicionado log para ajudar a depurar erros de conexão.
+        console.error("Erro na requisição DELETE:", err);
+        notify("Erro ao conectar com o servidor.", "error");
     }
 }
 
@@ -229,7 +235,7 @@ function renderPreviews() {
 
 postButton.addEventListener("click", async () => {
     const texto = postInput.value.trim();
-    
+
     if (!texto && filesToUpload.length === 0) {
         notify("Digite algo ou anexe um arquivo para publicar!", "warning");
         return;
@@ -244,10 +250,13 @@ postButton.addEventListener("click", async () => {
     try {
         const formData = new FormData();
         formData.append("texto", texto);
-        
+
         filesToUpload.forEach(file => {
             formData.append("media", file);
         });
+
+        // Adicionado log para depuração.
+        console.log("Tentando enviar o post. Conteúdo do FormData:", formData);
 
         const res = await fetch(`${API_URL}/posts`, {
             method: "POST",
@@ -266,10 +275,14 @@ postButton.addEventListener("click", async () => {
             notify("Post publicado com sucesso!", "success");
         } else {
             const err = await res.json();
+            // Adicionado log para ajudar a depurar erros da API.
+            console.error("Erro ao publicar post:", err);
             notify(err.message || "Não foi possível publicar", "error");
         }
-    } catch {
-        notify("Erro ao conectar com o servidor", "error");
+    } catch (err) {
+        // Adicionado log para ajudar a depurar erros de conexão.
+        console.error("Erro na requisição POST:", err);
+        notify("Erro ao conectar com o servidor.", "error");
     }
 });
 
@@ -321,13 +334,144 @@ confirmLogin.addEventListener("click", async () => {
             carregarPosts();
             notify("Login efetuado com sucesso!", "success");
         } else {
-            notify("Usuário ou senha incorretos", "error");
+            const err = await res.json();
+            notify(err.message || "Usuário ou senha incorretos", "error");
         }
     } catch {
         notify("Erro ao conectar com o servidor", "error");
     }
 });
 
+document.addEventListener('DOMContentLoaded', () => {
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menu = document.querySelector('.menu');
+    const navbarActions = document.querySelector('.navbar-actions');
+
+    if (mobileMenu) {
+        mobileMenu.addEventListener('click', () => {
+            mobileMenu.classList.toggle('is-active');
+            menu.classList.toggle('is-active');
+            navbarActions.classList.toggle('is-active');
+        });
+    }
+    
+    // --- Restante do seu código `atualizacoes.js` ---
+    // Chame as funções para carregar o conteúdo e atualizar a interface
+    atualizarInterface();
+    carregarPosts();
+});
+
+// A sua função `atualizarInterface` e todas as outras
+// que estavam no início do seu arquivo .js devem continuar lá.
+// Apenas garanta que o código do menu hambúrguer foi adicionado.
+
 // Inicialização
 carregarPosts();
 atualizarInterface();
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Código do menu hambúrguer, formulários, etc. já existentes.
+    // --- Nova Lógica do Chatbot ---
+    const chatbotToggleBtn = document.getElementById('chatbot-toggle-btn');
+    const chatbotContainer = document.getElementById('chatbot-container');
+    const chatbotCloseBtn = document.getElementById('close-chat');
+    const chatbotBody = document.getElementById('chatbot-body');
+    const userInput = document.getElementById('user-input');
+    const sendBtn = document.getElementById('send-btn');
+    // Função para mostrar/esconder o chat
+    chatbotToggleBtn.addEventListener('click', () => {
+        chatbotContainer.classList.toggle('is-visible');
+    });
+
+    chatbotCloseBtn.addEventListener('click', () => {
+        chatbotContainer.classList.remove('is-visible');
+    });
+
+    // Função para adicionar mensagem ao chat
+    function addMessage(text, sender) {
+        const messageDiv = document.createElement('div');
+        messageDiv.className = `message ${sender}-message`;
+        messageDiv.textContent = text;
+        chatbotBody.appendChild(messageDiv);
+        chatbotBody.scrollTop = chatbotBody.scrollHeight; // Rola para o final
+    }
+    // Lógica das respostas do bot
+    function getBotResponse(message) {
+    message = message.toLowerCase(); // Converte a mensagem para minúsculas
+
+    // Respostas para horários de atendimento
+    if (message.includes('horário') || message.includes('atendimento') || message.includes('funciona')) {
+        return 'Nosso horário de atendimento é de segunda a sexta-feira, das 7h às 17h.';
+    }
+    
+    // Respostas para matrículas
+    if (message.includes('matrícula') || message.includes('matriculas') || message.includes('inscrição')) {
+        return 'As matrículas para o próximo ano letivo estão abertas. Por favor, acesse a página "Agende sua Visita" para mais informações.';
+    }
+
+    // Respostas para localização e endereço
+    if (message.includes('localização') || message.includes('endereço') || message.includes('onde fica')) {
+        return 'Estamos localizados na R. Cachoeira Vida Nova, 378 - Conj. Promorar Raposo Tavares, São Paulo - SP, 05574-460. Você pode ver o mapa na nossa página de Localização.';
+    }
+
+    // Respostas para cursos
+    if (message.includes('curso') || message.includes('cursos') || message.includes('técnico') || message.includes('estudar')) {
+        return 'Atualmente, oferecemos o curso técnico de Desenvolvimento de Sistemas. Acesse a página "Curso Técnico" para saber mais!';
+    }
+
+    // Resposta para o telefone da escola
+    if (message.includes('telefone') || message.includes('contato') || message.includes('ligar')) {
+        return 'Você pode entrar em contato conosco pelo telefone (11) 3784-3772.';
+    }
+    
+    // --- NOVAS RESPOSTAS BÁSICAS ---
+
+    // Saudações
+    if (message.includes('olá') || message.includes('oi') || message.includes('ola') || message.includes('bom dia') || message.includes('boa tarde')) {
+        return 'Olá! Como posso te ajudar hoje?';
+    }
+
+    // Perguntas sobre a equipe
+    if (message.includes('equipe') || message.includes('direção') || message.includes('professores')) {
+        return 'Nossa equipe é formada por profissionais dedicados e apaixonados pela educação. Você pode conhecer mais sobre a direção e os professores na nossa página "Sobre Nós".';
+    }
+
+    // Despedidas
+    if (message.includes('tchau') || message.includes('obrigado') || message.includes('valeu') || message.includes('agradeço')) {
+        return 'De nada! Fico feliz em ajudar. Tenha um ótimo dia!';
+    }
+    
+    // Resposta para perguntas sobre o bot
+    if (message.includes('quem é você') || message.includes('o que você faz')) {
+        return 'Eu sou o assistente virtual da E.E. Odair Mandela, criado para responder às suas perguntas mais frequentes de forma rápida e eficiente.';
+    }
+
+    // Resposta padrão (quando não entende a pergunta)
+    return 'Desculpe, não entendi sua pergunta. Por favor, reformule ou entre em contato conosco diretamente pelo telefone (11) 3784-3772';
+}
+
+    // Função para enviar mensagem do usuário
+    function sendMessage() {
+        const userMessage = userInput.value.trim();
+        if (userMessage !== '') {
+            addMessage(userMessage, 'user');
+            userInput.value = '';
+
+            setTimeout(() => {
+                const botResponse = getBotResponse(userMessage);
+                addMessage(botResponse, 'bot');
+            }, 800); // Resposta do bot depois de um pequeno delay
+        }
+    }
+
+    // Evento de clique no botão de enviar
+    sendBtn.addEventListener('click', sendMessage);
+
+    // Evento de tecla Enter no input
+    userInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            sendMessage();
+        }
+    });
+
+});

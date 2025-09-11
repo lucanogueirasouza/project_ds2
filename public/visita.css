@@ -30,8 +30,14 @@ body {
     backdrop-filter: saturate(180%) blur(10px);
     position: sticky;
     top: 0;
-    z-index: 100;
+    z-index: 1000;
     transition: background-color 0.3s ease;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+    width: auto;
 }
 
 .navbar:hover {
@@ -70,6 +76,7 @@ body {
 .menu {
     list-style: none;
     display: flex;
+    align-items: center;
     gap: 30px;
     font-weight: 600;
     flex-wrap: wrap;
@@ -79,7 +86,7 @@ body {
     text-decoration: none;
     color: #0077cc;
     font-size: 1.05rem;
-    padding: 6px 8px;
+    padding: 25px 8px;
     border-radius: 6px;
     transition: all 0.25s ease;
     position: relative;
@@ -90,7 +97,7 @@ body {
     position: absolute;
     width: 0%;
     height: 2px;
-    bottom: -4px;
+    bottom: 20px;
     left: 0;
     background-color: #0077cc;
     transition: width 0.3s ease;
@@ -104,6 +111,15 @@ body {
 
 .menu a:hover::after,
 .menu a:focus::after {
+    width: 100%;
+}
+
+.menu a.active {
+    color: #004b8f;
+    font-weight: 700;
+}
+
+.menu a.active::after {
     width: 100%;
 }
 
@@ -128,12 +144,16 @@ body {
     white-space: nowrap;
 }
 
-.fale-conosco:hover,
 .fale-conosco:focus {
     background: linear-gradient(135deg, #005999, #003f66);
     box-shadow: 0 8px 20px rgb(0 89 155 / 0.5);
     transform: translateY(-2px);
     outline: none;
+}
+
+/* MENU TOGGLE */
+.menu-toggle {
+    display: none;
 }
 
 /* CONTEÚDO PRINCIPAL DA PÁGINA DE VISITA */
@@ -143,8 +163,6 @@ main {
     max-width: 1200px;
     margin: auto;
 }
-
-/* SEÇÃO HERO/BANNER */
 .visita-hero {
     background: linear-gradient(135deg, #0077cc, #0056b3);
     color: white;
@@ -154,27 +172,22 @@ main {
     margin-top: 30px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
-
 .visita-hero .main-title {
     font-size: 2.8rem;
     font-weight: 800;
     margin-bottom: 15px;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
-
 .visita-hero .subtitle {
     font-size: 1.2rem;
     font-weight: 300;
     max-width: 600px;
     margin: 0 auto;
 }
-
-/* SEÇÃO DE BENEFÍCIOS (CARDS) */
 .beneficios-section {
     padding: 60px 0;
     text-align: center;
 }
-
 .beneficios-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -182,7 +195,6 @@ main {
     justify-content: center;
     margin-top: 40px;
 }
-
 .beneficio-card {
     background: #ffffff;
     padding: 30px;
@@ -191,83 +203,137 @@ main {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     border: 1px solid #e0e0e0;
 }
-
 .beneficio-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
-
 .beneficio-card i {
     font-size: 3.5rem;
     color: #0077cc;
     margin-bottom: 20px;
 }
-
 .beneficio-card h3 {
     font-size: 1.3rem;
     color: #004b8f;
     margin-bottom: 10px;
 }
-
 .beneficio-card p {
     font-size: 0.95rem;
     color: #666;
     font-weight: 400;
 }
-
-/* SEÇÃO DO FORMULÁRIO */
 .form-section {
     padding: 60px 20px;
     text-align: center;
-    background-color: #f0f8ff; /* Fundo suave para destacar a seção */
+    background-color: #f0f8ff;
     border-radius: 12px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* Sombra para o card do formulário */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
 }
-
 .form-section h2 {
     font-size: 2rem;
     color: #0056b3;
     margin-bottom: 10px;
 }
-
 .form-section p {
     color: #555;
     font-size: 1.1rem;
     margin-bottom: 30px;
 }
-
 .visita-form {
     max-width: 500px;
     margin: 0 auto;
     text-align: left;
 }
-
 .form-group {
     margin-bottom: 20px;
 }
-
 .form-group label {
     display: block;
     font-weight: 600;
     color: #333;
     margin-bottom: 8px;
 }
-
-.form-group input {
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group textarea {
     width: 100%;
     padding: 12px;
     border: 1px solid #ccc;
     border-radius: 8px;
     font-size: 1rem;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    resize: vertical;
 }
-
-.form-group input:focus {
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group input[type="tel"]:focus,
+.form-group textarea:focus {
     border-color: #0077cc;
     box-shadow: 0 0 5px rgba(0, 119, 204, 0.3);
     outline: none;
 }
-
+.choice-group {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.choice-group input[type="radio"] {
+    display: none;
+}
+.choice-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    padding: 12px 20px;
+    border: 2px solid #0077cc;
+    border-radius: 8px;
+    background-color: #f8faff;
+    color: #0077cc;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    white-space: nowrap;
+}
+.choice-btn i {
+    margin-right: 8px;
+    font-size: 1.2em;
+}
+.choice-group input[type="radio"]:checked + .choice-btn {
+    background: linear-gradient(135deg, #0077cc, #005999);
+    color: white;
+    border-color: #005999;
+    box-shadow: 0 4px 10px rgba(0, 89, 155, 0.3);
+    transform: translateY(-2px);
+}
+.choice-btn:hover {
+    background-color: #e0f0ff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transform: translateY(-1px);
+}
+.choice-group input[type="radio"]:checked + .choice-btn:hover {
+    background: linear-gradient(135deg, #005999, #003f66);
+    box-shadow: 0 6px 15px rgba(0, 89, 155, 0.4);
+}
+.campo-oculto {
+    opacity: 0;
+    max-height: 0;
+    padding: 0 12px;
+    margin: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease-in-out, opacity 0.4s ease-in-out, padding 0.4s ease-in-out, margin 0.4s ease-in-out;
+}
+.campo-visivel {
+    opacity: 1;
+    max-height: 200px;
+    padding: 12px;
+    margin: 20px 0;
+}
 .submit-btn {
     width: 100%;
     padding: 15px;
@@ -281,13 +347,11 @@ main {
     box-shadow: 0 6px 12px rgb(0 119 204 / 0.35);
     transition: all 0.3s ease;
 }
-
 .submit-btn:hover {
     background: linear-gradient(135deg, #005999, #003f66);
     transform: translateY(-2px);
     box-shadow: 0 8px 20px rgb(0 89 155 / 0.5);
 }
-
 .form-status-message {
     margin-top: 20px;
     font-weight: bold;
@@ -296,12 +360,10 @@ main {
     border-radius: 8px;
     display: none;
 }
-
 .form-status-message.success {
     color: #28a745;
     background-color: #d4edda;
 }
-
 .form-status-message.error {
     color: #dc3545;
     background-color: #f8d7da;
@@ -319,7 +381,6 @@ main {
     border-top: 4px solid #00adb5;
     box-shadow: 0 -10px 20px rgb(0 0 0 / 0.5);
 }
-
 .footer-expandido .footer-section h4 {
     font-size: 1.5em;
     margin-bottom: 20px;
@@ -328,18 +389,15 @@ main {
     color: #00adb5;
     text-transform: uppercase;
 }
-
 .footer-expandido ul {
     list-style: none;
     padding: 0;
     margin: 0;
 }
-
 .footer-expandido ul li {
     margin-bottom: 15px;
     font-weight: 500;
 }
-
 .footer-expandido ul li a,
 .footer-expandido .social-icons a {
     color: #cccccc;
@@ -348,20 +406,17 @@ main {
     transition: color 0.3s ease;
     letter-spacing: 0.03em;
 }
-
 .footer-expandido ul li a:hover,
 .footer-expandido .social-icons a:hover {
     color: #00adb5;
     text-decoration: underline;
 }
-
 .footer-expandido .social-icons a {
     margin-right: 20px;
     font-weight: 700;
     letter-spacing: 0.05em;
     font-size: 1.1rem;
 }
-
 .footer-expandido .footer-bottom {
     grid-column: 1 / -1;
     text-align: center;
@@ -372,7 +427,6 @@ main {
     font-weight: 400;
     letter-spacing: 0.04em;
 }
-
 .footer-expandido .footer-bottom a {
     color: #00adb5;
     text-decoration: none;
@@ -380,7 +434,6 @@ main {
     font-weight: 700;
     transition: color 0.3s ease;
 }
-
 .footer-expandido .footer-bottom a:hover {
     text-decoration: underline;
     color: #009bb5;
@@ -388,100 +441,205 @@ main {
 
 /* RESPONSIVIDADE */
 @media (max-width: 768px) {
-    .visita-hero .main-title {
-        font-size: 2rem;
-    }
-    .beneficios-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-/* RESPONSIVIDADE (CÓDIGO ADICIONAL PARA CELULARES) */
-@media (max-width: 768px) {
-    /* Ajustes na navegação */
     .navbar {
         flex-direction: column;
+        align-items: flex-start;
         height: auto;
         padding: 10px 15px;
     }
-    .logo {
-        margin-bottom: 10px;
-        justify-content: center;
-    }
-    .menu {
-        flex-direction: column;
-        align-items: center;
+    .header-container {
         width: 100%;
-        gap: 15px;
+        justify-content: space-between;
     }
-    .menu a {
-        font-size: 1rem;
-    }
+    .menu,
     .botoes {
+        display: none;
+        flex-direction: column;
         width: 100%;
-        justify-content: center;
-        margin-top: 15px;
-    }
-
-    /* Ajustes no conteúdo principal */
-    main {
-        padding: 30px 15px;
-    }
-    .visita-hero {
-        padding: 50px 15px;
-    }
-    .visita-hero .main-title {
-        font-size: 2rem;
-    }
-    .visita-hero .subtitle {
-        font-size: 1rem;
-    }
-    .beneficios-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-    .beneficio-card {
-        padding: 20px;
-    }
-    .form-section {
-        padding: 40px 15px;
-    }
-    .form-section h2 {
-        font-size: 1.8rem;
-    }
-
-    /* Ajustes no rodapé */
-    .footer-expandido {
-        grid-template-columns: 1fr;
-        padding: 30px 20px;
         text-align: center;
+        gap: 15px;
+        transition: all 0.5s ease;
+        padding: 15px 0;
+        align-items: center;
     }
-    .footer-expandido .footer-section h4 {
-        margin-top: 20px;
-    }
-    .footer-expandido ul {
-        margin-bottom: 20px;
-    }
-    .footer-expandido .social-icons {
-        justify-content: center;
+    .menu.is-active,
+    .botoes.is-active {
         display: flex;
     }
+    .menu-toggle {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        width: 30px;
+        height: 25px;
+        cursor: pointer;
+    }
+    .menu-toggle .bar {
+        width: 100%;
+        height: 3px;
+        background-color: #0077cc;
+        border-radius: 5px;
+        transition: all 0.3s ease-in-out;
+    }
+    .menu-toggle.is-active .bar:nth-child(2) { opacity: 0; }
+    .menu-toggle.is-active .bar:nth-child(1) { transform: translateY(11px) rotate(45deg); }
+    .menu-toggle.is-active .bar:nth-child(3) { transform: translateY(-11px) rotate(-45deg); }
+
+    .menu a::after { display: none; }
+    .fale-conosco { width: 100%; text-align: center; white-space: normal; padding: 12px 0; }
+    main { padding: 30px 15px; }
+    .visita-hero { padding: 50px 15px; }
+    .visita-hero .main-title { font-size: 2rem; }
+    .visita-hero .subtitle { font-size: 1rem; }
+    .beneficios-grid { grid-template-columns: 1fr; gap: 20px; }
+    .beneficio-card { padding: 20px; }
+    .form-section { padding: 40px 15px; }
+    .form-section h2 { font-size: 1.8rem; }
+    .choice-group { flex-direction: column; align-items: stretch; }
+    .footer-expandido { grid-template-columns: 1fr; padding: 30px 20px; text-align: center; gap: 30px; }
+    .footer-expandido .footer-section h4 { margin-top: 20px; }
+    .footer-expandido ul { margin-bottom: 20px; }
+    .footer-expandido .social-icons { justify-content: center; display: flex; }
 }
 
 @media (max-width: 480px) {
-    .visita-hero .main-title {
-        font-size: 1.5rem;
-    }
-    .visita-hero .subtitle {
-        font-size: 0.9rem;
-    }
-    .form-section h2 {
-        font-size: 1.5rem;
-    }
-    .form-section p {
-        font-size: 0.9rem;
-    }
-    .form-group input {
-        font-size: 0.9rem;
-    }
+    .visita-hero .main-title { font-size: 1.5rem; }
+    .visita-hero .subtitle { font-size: 0.9rem; }
+    .form-section h2 { font-size: 1.5rem; }
+    .form-section p { font-size: 0.9rem; }
+    .form-group input { font-size: 0.9rem; }
+}
+
+/* Estilo do botão que abre o chat */
+.chatbot-toggle-btn {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(45deg, #0077cc, #005999);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    z-index: 1000;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.chatbot-toggle-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.35);
+}
+
+/* Estilo da janela do chat */
+.chatbot-container {
+    position: fixed;
+    bottom: 90px;
+    right: 25px;
+    width: 350px;
+    height: 450px;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    display: none; /* Oculto por padrão */
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 1000;
+    transition: all 0.4s ease-in-out;
+    transform: translateY(20px);
+    opacity: 0;
+}
+
+.chatbot-container.is-visible {
+    display: flex;
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.chatbot-header {
+    background: linear-gradient(45deg, #0077cc, #005999);
+    color: white;
+    padding: 15px;
+    font-weight: bold;
+    font-size: 1.1em;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chatbot-header .close-chat-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.2em;
+    cursor: pointer;
+}
+
+.chatbot-body {
+    flex-grow: 1;
+    padding: 15px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: #eef7ff;
+}
+
+.message {
+    padding: 10px;
+    border-radius: 12px;
+    max-width: 85%;
+}
+
+.bot-message {
+    background-color: #0077cc;
+    color: white;
+    align-self: flex-start;
+    border-bottom-left-radius: 4px;
+}
+
+.user-message {
+    background-color: #fff;
+    color: #333;
+    align-self: flex-end;
+    border: 1px solid #ddd;
+    border-bottom-right-radius: 4px;
+}
+
+.chatbot-footer {
+    padding: 10px;
+    background-color: #f1f1f1;
+    display: flex;
+    border-top: 1px solid #ddd;
+}
+
+.chatbot-footer input {
+    flex-grow: 1;
+    padding: 8px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    outline: none;
+    padding-left: 15px;
+}
+
+.chatbot-footer button {
+    background-color: #0077cc;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 20px;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.chatbot-footer button:hover {
+    background-color: #005999;
 }

@@ -1,92 +1,145 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Curso Técnico</title>
-  <link rel="stylesheet" href="curso.css">
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="icon" href="images/MANDELA LOGO EXEMPLO.png" type="image/png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curso Técnico | E. E. Odair Mandela</title>
+    <link rel="stylesheet" href="curso.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;500;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="icon" href="images/MANDELA LOGO EXEMPLO.png" type="image/png">
 </head>
 <body>
 
-    <!-- Navbar -->
-    <nav class="navbar">
+<nav class="navbar">
+    <div class="header-container">
         <div class="logo">
-          <img src="images/MANDELA LOGO EXEMPLO.png" alt="Logo Mandela" />
-          <span>E. E <span class="destaque">ODAIR MANDELA</span></span>
+            <img src="images/MANDELA LOGO EXEMPLO.png" alt="Logo Mandela" />
+            <span>E. E <span class="destaque">ODAIR MANDELA</span></span>
         </div>
-    
-        <ul class="menu">
-          <li><a href="index.html">INÍCIO</a></li>
-          <li><a href="atualizacoes.html">ATUALIZAÇÕES</a></li>
-          <li><a href="historia.html">HISTÓRIA</a></li>
-          <li><a href="alunos.html">ALUNOS MATRICULADOS</a></li>
-          <li><a href="curso.html" class="active">CURSO TÉCNICO</a></li>
-          <li><a href="localizacao.html">LOCALIZAÇÃO</a></li>
-        </ul>
-    
-        <div class="botoes">
-            <a href="tel:+551137843772" target="_blank">
-              <button class="fale-conosco">Fale Conosco</button>
-            </a>
+        
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
         </div>
-    </nav>
+    </div>
 
-    <!-- Conteúdo Principal -->
-    <main class="curso-tecnico-container">
-      <section class="curso-tecnico-intro">
+    <ul class="menu">
+        <li><a href="index.html">INÍCIO</a></li>
+        <li><a href="atualizacoes.html">ATUALIZAÇÕES</a></li>
+        <li><a href="historia.html">HISTÓRIA</a></li>
+        <li><a href="alunos.html">ALUNOS MATRICULADOS</a></li>
+        <li><a href="curso.html" class="active">CURSO TÉCNICO</a></li>
+        <li><a href="localizacao.html">LOCALIZAÇÃO</a></li>
+    </ul>
+
+    <div class="botoes">
+        <a href="tel:+551137843772" target="_blank">
+            <button class="fale-conosco">Fale Conosco</button>
+        </a>
+    </div>
+</nav>
+
+<main class="curso-tecnico-container">
+    <section class="curso-tecnico-intro fade-in">
         <h1>Curso Técnico</h1>
         <p>Descubra a trajetória do nosso curso técnico e a formação de profissionais qualificados.</p>
-      </section>
+    </section>
 
-      <section class="historia-curso">
+    <section class="historia-curso fade-in">
         <h2>Como Surgiu</h2>
         <p>
-          O Curso Técnico da E. E. Odair Mandela foi criado em 2024 com o objetivo de preparar os alunos para o mercado de trabalho de forma prática e eficiente. Com um currículo atualizado e focado nas necessidades do mercado, nosso curso tem sido uma excelente opção para jovens que desejam adquirir conhecimento técnico enquanto ainda estão no ensino médio.
+            O Curso Técnico da E. E. Odair Mandela foi criado em 2024 com o objetivo de preparar os alunos para o mercado de trabalho de forma prática e eficiente. Com um currículo atualizado e focado nas necessidades do mercado, nosso curso tem sido uma excelente opção para jovens que desejam adquirir conhecimento técnico enquanto ainda estão no ensino médio.
         </p>
         <p>
-          Desde a sua criação, o curso tem se expandido em diversas áreas, incluindo informática, e outras especializações que visam atender às demandas da indústria e dos novos setores econômicos.
+            Desde a sua criação, o curso tem se expandido em diversas áreas, incluindo informática, e outras especializações que visam atender às demandas da indústria e dos novos setores econômicos.
         </p>
-      </section>
+    </section>
 
-      <section class="video-depoimentos">
-        <h2>Depoimentos dos Alunos</h2>
-        <p>Veja o que um de nossos alunos - Luca, (2°DS - 2025) - têm a dizer sobre a experiência no curso técnico:</p>
-        <div class="video-container">
-          <iframe width="800" height="450" src="https://www.youtube.com/embed/YOUR_VIDEO_ID" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <!-- Nova seção de Depoimentos de Alunos com Carrossel -->
+    <section class="depoimentos-alunos fade-in">
+        <h2>O que nossos alunos dizem</h2>
+        <div class="carousel-container">
+            <div class="depoimentos-grid" id="depoimentos-grid">
+                <!-- Depoimento 1 -->
+
+                <!-- Depoimento 2 -->
+                <div class="depoimento-card">
+                    <img src="images/airon.jpg" alt="Foto do Aluno Airon C. - 2°DS / 2025" class="depoimento-foto">
+                    <div class="depoimento-texto">
+                        <p>"Eu não tinha certeza se seguiria na área de tecnologia, mas o curso abriu meus olhos para um mundo de possibilidades. As aulas práticas são a melhor parte!"</p>
+                        <span class="depoimento-nome">~ Airon C. , 17 anos <br> 2° DS / 2025</span>
+                    </div>
+                </div>
+                <!-- Depoimento 3 -->
+                <div class="depoimento-card">
+                    <img src="images/joao.png" alt="Foto do Aluno João. - 3°DS / 2025" class="depoimento-foto">
+                    <div class="depoimento-texto">
+                        <p>"A qualidade do ensino e a estrutura da escola são impressionantes. Me sinto realmente preparado para o mercado de trabalho depois de tudo o que aprendi."</p>
+                        <span class="depoimento-nome">~ João, 18 anos <br> 3° DS / 2025</span>
+                    </div>
+                </div>
+                 <!-- Depoimento 4 -->
+                <div class="depoimento-card">
+                    <img src="images/luca.jpg" alt="Foto do Aluno Luca N." class="depoimento-foto">
+                    <div class="depoimento-texto">
+                        <p>"A E. E. Odair Mandela me proporcionou as ferramentas certas para iniciar minha carreira. O suporte dos professores e a experiência prática foram fundamentais."</p>
+                        <span class="depoimento-nome">~ Luca N. , 16 anos <br> 2° DS / 2025</span>
+                    </div>
+                </div>
+            </div>
         </div>
-      </section>
-    </main>
+    </section>
+
+</main>
 
     <!-- Footer -->
 <footer class="footer-expandido">
-  <div class="footer-section">
-    <h4>Links Rápidos</h4>
-    <ul>
-      <li><a href="index.html">Início</a></li>
-      <li><a href="historia.html">História</a></li>
-      <li><a href="curso.html">Curso Técnico</a></li>
-      <li><a href="localizacao.html">Localização</a></li>
-      <li><a href="alunos.html">Alunos</a></li>
-      <li><a href="atualizacoes.html">Atualizações</a></li>
-      <li><a href="visita.html">Agende sua Visita!</a></li>
-    </ul>
-  </div>
-
-  <div class="footer-section">
-    <h4>Redes Sociais</h4>
-    <div class="social-icons">
-      <a href="https://www.instagram.com/escolaodairmandela/" target="_blank">Instagram</a>
-      <a href="https://www.facebook.com/odairmandela" target="_blank">Facebook</a>
+    <div class="footer-section">
+        <h4>Links Rápidos</h4>
+        <ul>
+            <li><a href="index.html">Início</a></li>
+            <li><a href="historia.html">História</a></li>
+            <li><a href="curso.html">Curso Técnico</a></li>
+            <li><a href="localizacao.html">Localização</a></li>
+            <li><a href="alunos.html">Alunos</a></li>
+            <li><a href="atualizacoes.html">Atualizações</a></li>
+            <li><a href="visita.html">Agende sua Visita!</a></li>
+        </ul>
     </div>
-  </div>
 
-  <div class="footer-bottom">
-    <p>© 2025 E. E Odair Martiniano Mandela. Todos os direitos reservados.</p>
-    <p>Desenvolvido por <a href="https://github.com/lucanogueirasouza" target="_blank">Luca Nogueira</a></p>
-  </div>
+    <div class="footer-section">
+        <h4>Redes Sociais</h4>
+        <div class="social-icons">
+            <a href="https://www.instagram.com/escolaodairmandela/" target="_blank">Instagram</a>
+            <a href="https://www.facebook.com/odairmandela" target="_blank">Facebook</a>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        <p>© 2025 E. E Odair Martiniano Mandela. Todos os direitos reservados.</p>
+        <p>Desenvolvido por <a href="https://github.com/lucanogueirasouza" target="_blank">Luca Nogueira</a></p>
+    </div>
 </footer>
 
+    <div class="chatbot-container" id="chatbot-container">
+    <div class="chatbot-header" id="chatbot-header">
+        <span>Chatbot</span>
+        <button id="close-chat" class="close-chat-btn">x</button>
+    </div>
+    <div class="chatbot-body" id="chatbot-body">
+        <div class="message bot-message">Olá! Sou o assistente virtual da escola. Posso te ajudar com dúvidas sobre matrículas, horários e localização. (Por favor, para que eu consiga te ajudar de forma eficaz e rápida, digite as palavras acentuadas formalmente).</div>
+    </div>
+    <div class="chatbot-footer">
+        <input type="text" id="user-input" placeholder="Digite sua pergunta...">
+        <button id="send-btn">Enviar</button>
+    </div>
+</div>
+
+<div class="chatbot-toggle-btn" id="chatbot-toggle-btn">
+    <i class="fas fa-comment-dots"></i>
+</div>
+    <script src="curso.js"></script>
 </body>
 </html>

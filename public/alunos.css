@@ -1,3 +1,141 @@
+/* RESET E BASE */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #e0f0ff 0%, #f4faff 100%);
+    color: #333;
+    line-height: 1.6;
+}
+
+/* NAVBAR (Estilos para Desktop) */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+    height: 80px;
+    background-color: #ffffffcc;
+    box-shadow: 0 2px 8px rgb(0 119 204 / 0.15);
+    backdrop-filter: saturate(180%) blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+    flex-wrap: nowrap;
+    gap: 15px;
+}
+
+.header-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 22px;
+    font-weight: 900;
+    letter-spacing: 1px;
+    color: #005aab;
+    user-select: none;
+}
+
+.logo img {
+    height: 70px;
+    border-radius: 12px;
+    filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.1));
+    transition: transform 0.3s ease;
+}
+
+.logo .destaque {
+    color: #0077cc;
+    font-style: italic;
+}
+
+.menu {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    font-weight: 600;
+    flex-wrap: wrap;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #0077cc;
+    font-size: 1.05rem;
+    padding: 6px 8px;
+    border-radius: 6px;
+    transition: all 0.25s ease;
+    position: relative;
+}
+
+.menu a::after {
+    content: '';
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: #0077cc;
+    transition: width 0.3s ease;
+    border-radius: 4px;
+}
+
+.menu a:hover::after,
+.menu a:focus::after,
+.menu a.active::after {
+    width: 100%;
+}
+
+.botoes {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.fale-conosco {
+    background: linear-gradient(135deg, #0077cc, #005999);
+    color: white;
+    border: none;
+    padding: 10px 22px;
+    border-radius: 30px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 1rem;
+    box-shadow: 0 6px 12px rgb(0 119 204 / 0.35);
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.fale-conosco:hover,
+.fale-conosco:focus {
+    background: linear-gradient(135deg, #005999, #003f66);
+    box-shadow: 0 8px 20px rgb(0 89 155 / 0.5);
+    transform: translateY(-2px);
+    outline: none;
+}
+
+.menu-toggle {
+    display: none;
+}
+
+/* CONTEÚDO PRINCIPAL (Alunos) */
+main.container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+}
+
 .alunos-info {
     text-align: center;
     background: #fff;
@@ -10,14 +148,12 @@
     margin-right: auto;
 }
 
-/* Título da seção */
 .alunos-info h2 {
     color: #0056b3;
     margin-bottom: 20px;
     font-size: 2rem;
 }
 
-/* Caixa do contador */
 .contador-alunos {
     display: inline-block;
     padding: 20px 30px;
@@ -27,121 +163,296 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Efeito visual ao passar o mouse (opcional) */
 .contador-alunos:hover {
     transform: translateY(-3px);
     box-shadow: 0 8px 20px rgba(0, 123, 255, 0.2);
 }
 
-/* Texto de descrição */
 .contador-alunos p {
     font-size: 1.2em;
     color: #555;
     margin-bottom: 10px;
 }
 
-/* Número de alunos */
 #qtdAlunos {
     font-size: 3em;
     font-weight: bold;
     color: #0056b3;
 }
 
-/* Força html e body a ocupar 100% da altura da tela */
-html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-}
-
-/* Centraliza o conteúdo do main vertical e horizontalmente */
-main.container {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 40px 20px;
-}
-
+/* RODAPÉ (Footer) */
 .footer-expandido {
-  background-color: #222831;
-  color: #eeeeee;
-  padding: 50px 30px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 40px;
-  border-top: 4px solid #00adb5;
+    background-color: #222831;
+    color: #eeeeee;
+    padding: 50px 30px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 40px;
+    border-top: 4px solid #00adb5;
 }
 
 .footer-expandido .footer-section h4 {
-  font-size: 1.3em;
-  margin-bottom: 15px;
-  font-weight: 700;
-  letter-spacing: 1px;
-  color: #00adb5;
+    font-size: 1.3em;
+    margin-bottom: 15px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #00adb5;
 }
 
 .footer-expandido ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 .footer-expandido ul li {
-  margin-bottom: 12px;
+    margin-bottom: 12px;
 }
 
 .footer-expandido ul li a,
 .footer-expandido .social-icons a {
-  color: #cccccc;
-  text-decoration: none;
-  font-weight: 500;
-  transition: color 0.3s ease;
+    color: #cccccc;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
 }
 
 .footer-expandido ul li a:hover,
 .footer-expandido .social-icons a:hover {
-  color: #00adb5;
+    color: #00adb5;
 }
 
 .footer-expandido .social-icons a {
-  margin-right: 18px;
-  font-weight: 600;
-  letter-spacing: 0.05em;
+    margin-right: 18px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
 }
 
 .footer-expandido .footer-bottom {
-  grid-column: 1 / -1;
-  text-align: center;
-  border-top: 1px solid #444;
-  padding-top: 18px;
-  font-size: 0.9em;
-  color: #999;
+    grid-column: 1 / -1;
+    text-align: center;
+    border-top: 1px solid #444;
+    padding-top: 18px;
+    font-size: 0.9em;
+    color: #999;
 }
 
 .footer-expandido .footer-bottom a {
-  color: #00adb5;
-  text-decoration: none;
-  font-style: normal;
-  font-weight: 600;
+    color: #00adb5;
+    text-decoration: none;
+    font-style: normal;
+    font-weight: 600;
 }
 
 .footer-expandido .footer-bottom a:hover {
-  text-decoration: underline;
+    text-decoration: underline;
 }
 
-/* Responsividade */
-@media (max-width: 600px) {
-  .footer-expandido {
-    padding: 30px 20px;
-    grid-template-columns: 1fr;
-    gap: 30px;
-  }
+/* RESPONSIVIDADE (Layout para Mobile) */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        height: auto;
+        padding: 15px 20px;
+    }
+    
+    .header-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+    }
+
+    .menu,
+    .botoes {
+        display: none; /* Oculta por padrão no mobile */
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+        gap: 15px;
+        transition: all 0.5s ease;
+        padding: 15px 0;
+        align-items: center;
+    }
+
+    .menu.is-active,
+    .botoes.is-active {
+        display: flex; /* Exibe quando a classe 'is-active' é adicionada */
+    }
+
+    .menu-toggle {
+        display: flex; /* Exibe o ícone em telas menores */
+        flex-direction: column;
+        justify-content: space-around;
+        width: 30px;
+        height: 25px;
+        cursor: pointer;
+    }
+
+    .menu-toggle .bar {
+        width: 100%;
+        height: 3px;
+        background-color: #0077cc;
+        border-radius: 5px;
+        transition: all 0.3s ease-in-out;
+    }
+
+    .menu-toggle.is-active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .menu-toggle.is-active .bar:nth-child(1) {
+        transform: translateY(11px) rotate(45deg);
+    }
+
+    .menu-toggle.is-active .bar:nth-child(3) {
+        transform: translateY(-11px) rotate(-45deg);
+    }
+
+    .menu a::after {
+        display: none;
+    }
+
+    .fale-conosco {
+        width: 100%;
+        text-align: center;
+        white-space: normal;
+        padding: 12px 0;
+    }
 }
 
+/* Estilo do botão que abre o chat */
+.chatbot-toggle-btn {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(45deg, #0077cc, #005999);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    z-index: 1000;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
+.chatbot-toggle-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.35);
+}
 
+/* Estilo da janela do chat */
+.chatbot-container {
+    position: fixed;
+    bottom: 90px;
+    right: 25px;
+    width: 350px;
+    height: 450px;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    display: none; /* Oculto por padrão */
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 1000;
+    transition: all 0.4s ease-in-out;
+    transform: translateY(20px);
+    opacity: 0;
+}
 
+.chatbot-container.is-visible {
+    display: flex;
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.chatbot-header {
+    background: linear-gradient(45deg, #0077cc, #005999);
+    color: white;
+    padding: 15px;
+    font-weight: bold;
+    font-size: 1.1em;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chatbot-header .close-chat-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.2em;
+    cursor: pointer;
+}
+
+.chatbot-body {
+    flex-grow: 1;
+    padding: 15px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background-color: #eef7ff;
+}
+
+.message {
+    padding: 10px;
+    border-radius: 12px;
+    max-width: 85%;
+}
+
+.bot-message {
+    background-color: #0077cc;
+    color: white;
+    align-self: flex-start;
+    border-bottom-left-radius: 4px;
+}
+
+.user-message {
+    background-color: #fff;
+    color: #333;
+    align-self: flex-end;
+    border: 1px solid #ddd;
+    border-bottom-right-radius: 4px;
+}
+
+.chatbot-footer {
+    padding: 10px;
+    background-color: #f1f1f1;
+    display: flex;
+    border-top: 1px solid #ddd;
+}
+
+.chatbot-footer input {
+    flex-grow: 1;
+    padding: 8px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    outline: none;
+    padding-left: 15px;
+}
+
+.chatbot-footer button {
+    background-color: #0077cc;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 20px;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.chatbot-footer button:hover {
+    background-color: #005999;
+}

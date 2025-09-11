@@ -11,27 +11,35 @@
 </head>
 <body>
 
-    <nav class="navbar">
+        <nav class="navbar">
+    <div class="header-container">
         <div class="logo">
             <img src="images/MANDELA LOGO EXEMPLO.png" alt="Logo Mandela" />
             <span>E. E <span class="destaque">ODAIR MANDELA</span></span>
         </div>
-
-        <ul class="menu">
-            <li><a href="index.html" class="active">INÍCIO</a></li>
-            <li><a href="atualizacoes.html">ATUALIZAÇÕES</a></li>
-            <li><a href="historia.html">HISTÓRIA</a></li>
-            <li><a href="alunos.html">ALUNOS MATRICULADOS</a></li>
-            <li><a href="curso.html">CURSO TÉCNICO</a></li>
-            <li><a href="localizacao.html">LOCALIZAÇÃO</a></li>
-        </ul>
-
-        <div class="botoes">
-            <a href="tel:+551137843772" target="_blank">
-                <button class="fale-conosco">Fale Conosco</button>
-            </a>
+        
+        <div class="menu-toggle" id="mobile-menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
         </div>
-    </nav>
+    </div>
+
+    <ul class="menu">
+        <li><a href="index.html">INÍCIO</a></li>
+        <li><a href="atualizacoes.html">ATUALIZAÇÕES</a></li>
+        <li><a href="historia.html">HISTÓRIA</a></li>
+        <li><a href="alunos.html">ALUNOS MATRICULADOS</a></li>
+        <li><a href="curso.html">CURSO TÉCNICO</a></li>
+        <li><a href="localizacao.html">LOCALIZAÇÃO</a></li>
+    </ul>
+
+    <div class="botoes">
+        <a href="tel:+551137843772" target="_blank">
+            <button class="fale-conosco">Fale Conosco</button>
+        </a>
+    </div>
+</nav>
 
     <main>
         <section class="visita-hero">
@@ -71,8 +79,27 @@
 
         <section class="form-section">
             <h2>Preencha o Formulário e Fale com a Nossa Equipe</h2>
-            <p>Deixe seus dados para agendarmos sua visita e tirarmos todas as suas dúvidas.</p>
+            <p>Deixe seus dados para que possamos entender sua necessidade e entrar em contato.</p>
             <form id="visitaForm" class="visita-form">
+                <div class="form-group">
+                    <label for="tipoContato">Qual o seu interesse?</label>
+                    <div class="choice-group">
+                        <input type="radio" id="visita" name="tipoContato" value="visita" required checked>
+                        <label for="visita" class="choice-btn"><i class="fas fa-school"></i> Visita</label>
+
+                        <input type="radio" id="matricula" name="tipoContato" value="matricula" required>
+                        <label for="matricula" class="choice-btn"><i class="fas fa-user-graduate"></i> Matrícula</label>
+
+                        <input type="radio" id="outros" name="tipoContato" value="outros" required>
+                        <label for="outros" class="choice-btn"><i class="fas fa-info-circle"></i> Outros</label>
+                    </div>
+                </div>
+                
+                <div id="outros-campo" class="form-group campo-oculto">
+                    <label for="outros-descricao">Conte-nos sobre seu interesse:</label>
+                    <textarea id="outros-descricao" name="outros_descricao" rows="4"></textarea>
+                </div>
+
                 <div class="form-group">
                     <label for="nome">Nome Completo</label>
                     <input type="text" id="nome" name="nome" required>
@@ -85,7 +112,7 @@
                     <label for="telefone">Telefone</label>
                     <input type="tel" id="telefone" name="telefone" required>
                 </div>
-                <button type="submit" class="submit-btn">Agendar Visita</button>
+                <button type="submit" class="submit-btn">Enviar Solicitação</button>
             </form>
             <div id="form-status" class="form-status-message"></div>
         </section>
@@ -118,6 +145,23 @@
             <p>Desenvolvido por <a href="https://github.com/lucanogueirasouza" target="_blank">Luca Nogueira</a></p>
         </div>
     </footer>
+        <div class="chatbot-container" id="chatbot-container">
+    <div class="chatbot-header" id="chatbot-header">
+        <span>Chatbot</span>
+        <button id="close-chat" class="close-chat-btn">x</button>
+    </div>
+    <div class="chatbot-body" id="chatbot-body">
+        <div class="message bot-message">Olá! Sou o assistente virtual da escola. Posso te ajudar com dúvidas sobre matrículas, horários e localização. (Por favor, para que eu consiga te ajudar de forma eficaz e rápida, digite as palavras acentuadas formalmente).</div>
+    </div>
+    <div class="chatbot-footer">
+        <input type="text" id="user-input" placeholder="Digite sua pergunta...">
+        <button id="send-btn">Enviar</button>
+    </div>
+</div>
+
+<div class="chatbot-toggle-btn" id="chatbot-toggle-btn">
+    <i class="fas fa-comment-dots"></i>
+</div>
     <script src="visita.js"></script>
 </body>
 </html>
